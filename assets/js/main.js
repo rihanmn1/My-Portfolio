@@ -262,3 +262,187 @@ function SendMail(){
         swal("Success!", "Your message has been sent!", "success");
     })
 }
+ 
+// Game
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const memoryGame = document.querySelector('.memory-game');
+
+    const resetButton = document.querySelector('.reset-button');
+
+
+
+    // Card faces using emojis
+
+    const cardFaces = ['🍒', '🍓', '🍎', '🍊', '🍇', '🍉', '🍌', '🍍'];
+
+    const gameCards = [...cardFaces, ...cardFaces]; // Create pairs
+
+
+
+    let flippedCards = [];
+
+    let matchedPairs = 0;
+
+    let canFlip = true;
+
+
+
+    // Fisher-Yates shuffle algorithm
+
+    function shuffle(array) {
+
+        let currentIndex = array.length, randomIndex;
+
+        while (currentIndex !== 0) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+
+            currentIndex--;
+
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+
+        }
+
+        return array;
+
+    }
+
+
+
+    // Create and append card elements to the DOM
+
+    function createBoard() {
+
+        shuffle(gameCards).forEach(cardFace => {
+
+            const card = document.createElement('div');
+
+            card.classList.add('card');
+
+            card.innerHTML = `
+
+                <div class="front-face">${cardFace}</div>
+
+                <div class="back-face"></div>
+
+            `;
+
+            card.addEventListener('click', flipCard);
+
+            memoryGame.appendChild(card);
+
+        });
+
+    }
+
+
+
+    // Handles the card flip logic
+
+    function flipCard() {
+
+        if (!canFlip || flippedCards.length >= 2 || this.classList.contains('flipped')) {
+
+            return;
+
+        }
+
+
+
+        this.classList.add('flipped');
+
+        flippedCards.push(this);
+
+
+
+        if (flippedCards.length === 2) {
+
+            canFlip = false;
+
+            setTimeout(checkForMatch, 1000);
+
+        }
+
+    }
+
+
+
+    // Checks if the two flipped cards are a match
+
+    function checkForMatch() {
+
+        const [card1, card2] = flippedCards;
+
+        const isMatch = card1.querySelector('.front-face').textContent === card2.querySelector('.front-face').textContent;
+
+
+
+        if (isMatch) {
+
+            matchedPairs++;
+
+            card1.classList.add('matched');
+
+            card2.classList.add('matched');
+
+        } else {
+
+            card1.classList.remove('flipped');
+
+            card2.classList.remove('flipped');
+
+        }
+
+
+
+        flippedCards = [];
+
+        canFlip = true;
+
+
+
+        if (matchedPairs === cardFaces.length) {
+
+            // Optional: You could add a 'win' message here
+
+            console.log('You won!');
+
+        }
+
+    }
+
+
+
+    // Resets the game to its initial state
+
+    function resetGame() {
+
+        memoryGame.innerHTML = '';
+
+        flippedCards = [];
+
+        matchedPairs = 0;
+
+        canFlip = true;
+
+        createBoard();
+
+    }
+
+
+
+    
+
+    resetButton.addEventListener('click', resetGame);
+
+
+
+    
+
+    createBoard();
+
+});
+
+
