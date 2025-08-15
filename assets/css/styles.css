@@ -404,7 +404,92 @@ img {
   color: var(--first-color-alt);
 }
 
+.project-item {
 
+  background-color: #1e1e1e;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+  border-radius: 8px;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  max-width: 400px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for smooth effect */
+
+}
+
+
+
+/* Hover effect for the project item */
+
+.project-item:hover {
+
+  transform: translateY(-5px); /* Lifts the card slightly on hover */
+
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increases the shadow */
+
+  background-color: #2a2a2a; /* Slightly lighter background */
+
+}
+
+
+
+/* Styling for the buttons */
+
+.project-buttons {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+  justify-content: center;
+
+}
+.view-code {
+
+  background-color: #007bff;
+
+  border: 1px solid #007bff;
+
+}
+
+
+
+.view-code:hover {
+
+  background-color: #0056b3;
+
+}
+
+
+
+.live-demo {
+
+  background-color: #28a745;
+
+  border: 1px solid #28a745;
+
+  margin-right: 35px;
+
+}
+
+
+
+.live-demo:hover {
+
+  background-color: #218838;
+
+}
 /*==================== ABOUT ====================*/
 .about__img{
   width: 350px;
@@ -642,6 +727,7 @@ img {
   border-radius: .25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
   transition: .3s;
+  
 }
 
 .projects__content:hover{
@@ -1438,6 +1524,253 @@ img {
 
   .contact__inputs{
     grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+/* game section */
+.game-section {
+
+  background-color: #151e2600;
+
+  /* color: #030303; */
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+}
+
+
+
+/* Game container styling */
+
+.game-container {
+
+  text-align: center;
+
+  /* background-color: #1e1e1e; */
+
+  padding: 2rem;
+
+  border-radius: 1rem;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+
+  max-width: 90%;
+
+  margin-bottom: 2rem;
+
+}
+
+
+
+/* .game-section h2 {
+
+  /* color: #070707; */
+
+  /* margin-bottom: 1.5rem;
+
+  font-size: 2.5rem;
+
+} */ 
+
+
+
+/* Game board styling */
+
+.memory-game {
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 10px;
+
+  perspective: 1000px;
+
+  margin-bottom: 1.5rem;
+
+}
+
+
+
+/* Card styling */
+
+.card {
+
+  width: 80px;
+
+  height: 80px;
+
+  position: relative;
+
+  transform-style: preserve-3d;
+
+  transition: transform 0.5s;
+
+  cursor: pointer;
+
+  border-radius: 8px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.card.flipped {
+
+  transform: rotateY(180deg);
+
+}
+
+
+
+.card .front-face,
+
+.card .back-face {
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  backface-visibility: hidden;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 8px;
+
+  font-size: 2rem;
+
+}
+
+
+
+.card .front-face {
+
+  background-color: #0a82fa00;
+
+  color: #fff;
+
+  transform: rotateY(180deg);
+
+}
+
+
+
+.card .back-face {
+
+  background-color: #0b82f9;
+
+  color: transparent;
+
+}
+
+
+
+.card.matched .front-face {
+
+  background-color: #38c172; /* Green for matched cards */
+
+}
+
+
+
+.card.matched .front-face i {
+
+  color: #fff;
+
+}
+
+
+
+/* Button styling */
+
+.game-button {
+
+  background-color: #d64949;
+
+  color: #fff;
+
+  border: none;
+
+  padding: 1rem 2rem;
+
+  font-size: 1rem;
+
+  font-weight: bold;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s, transform 0.2s;
+
+}
+
+
+
+.game-button:hover {
+
+  background-color: #c13838;
+
+  transform: translateY(-2px);
+
+}
+
+
+
+/* Responsive design for smaller screens */
+
+@media (max-width: 480px) {
+
+  .memory-game {
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 8px;
+
+  }
+
+
+
+  .card {
+
+      width: 60px;
+
+      height: 60px;
+
+  }
+
+
+
+  .card .front-face,
+
+  .card .back-face {
+
+      font-size: 1.5rem;
+
+  }
+
+
+
+  .game-section h2 {
+
+      font-size: 2rem;
+
   }
 
 }
